@@ -17,11 +17,13 @@ function getRandomIntInclusive (minCust, maxCust) {
     minCust: 23,
     maxCust: 65,
     avgCookieSale: 6.3,
-    hourlyCookieSales: [],
+    hourlyCookieSales: [], 
+    dailyTotal: 0, 
     cookiesPerHour:  function() {
         for (var i = 0; i < hours.length; i++) {
             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-           
+            //console.log(this.hourlyCookieSales);
+            this.dailyTotal += this.hourlyCookieSales[i];
         }
     }
 }
@@ -37,7 +39,7 @@ pike.render = function() {   /////pushes sales number to populate HTML
       
       var liEl = document.createElement('li');
       
-      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
       
       pikeUl.appendChild(liEl);
     }
@@ -60,7 +62,7 @@ pike.render = function() {   /////pushes sales number to populate HTML
     cookiesPerHour:  function() {
         for (var i = 0; i < hours.length; i++) {
             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-           
+            this.dailyTotal += this.hourlyCookieSales[i];
         }
     }
 }
@@ -76,7 +78,7 @@ seaTac.render = function() {
       
       var liEl = document.createElement('li');
       
-      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
       
       seaTacUl.appendChild(liEl);
     }
@@ -99,7 +101,7 @@ seaTac.render = function() {
     cookiesPerHour:  function() {
         for (var i = 0; i < hours.length; i++) {
             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-           
+            this.dailyTotal += this.hourlyCookieSales[i];
         }
     }
 }
@@ -115,7 +117,7 @@ seattleCenter.render = function() {
       
       var liEl = document.createElement('li');
       
-      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
       
       seattleCenterUl.appendChild(liEl);
     }
@@ -139,7 +141,7 @@ function getRandomIntInclusive (minCust, maxCust) {
     cookiesPerHour:  function() {
         for (var i = 0; i < hours.length; i++) {
             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-           
+            this.dailyTotal += this.hourlyCookieSales[i];
         }
     }
 }
@@ -155,7 +157,7 @@ capitolHill.render = function() {
       
       var liEl = document.createElement('li');
       
-      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
       
       capitolHillUl.appendChild(liEl);
     }
@@ -179,7 +181,7 @@ capitolHill.render = function() {
     cookiesPerHour:  function() {
         for (var i = 0; i < hours.length; i++) {
             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-           
+            this.dailyTotal += this.hourlyCookieSales[i];
         }
     }
 }
@@ -195,19 +197,11 @@ alki.render = function() {
       
       var liEl = document.createElement('li');
       
-      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
       
       alkiUl.appendChild(liEl);
     }
   }
 
   alki.render();
-
-
-
-
-
-
-
-
 
