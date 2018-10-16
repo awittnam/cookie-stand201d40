@@ -29,7 +29,7 @@ function getRandomIntInclusive (minCust, maxCust) {
 pike.cookiesPerHour();
   
 
-pike.render = function() {
+pike.render = function() {   /////pushes sales number to populate HTML
     
     var pikeUl = document.getElementById('Pike');
     
@@ -164,6 +164,44 @@ capitolHill.render = function() {
   capitolHill.render();
 
 
+  //location five: Alki 
+  
+  function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var alki = {
+    name: 'Alki',
+    minCust: 2,
+    maxCust: 16,
+    avgCookieSale: 4.6,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+           
+        }
+    }
+}
+  
+alki.cookiesPerHour();
+  
+
+alki.render = function() {
+    
+    var alkiUl = document.getElementById('Alki');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      
+      alkiUl.appendChild(liEl);
+    }
+  }
+
+  alki.render();
 
 
 
