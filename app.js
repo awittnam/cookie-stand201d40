@@ -1,53 +1,207 @@
 'use strict';
 
 // Object literal notation
-
-// Let's model some Seattle beaches in code
 // Let's make note of the name, neighborhood, and seagull count of each beach for each day last week
 
-var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-var alki = {
-  name: 'Alki Beach',
-  neighborhood: 'West Seattle',
-  seagullCount: [35, 77, 23, 347, 55, 72, 88]
-};
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
 
 
-alki.render = function() {
-    //access  
-    var alkiUl = document.getElementById('alkibeach');
-    //for each element inthe seagullCount array, we need to
-    for (var i = 0; i < alki.seagullCount.length; i++) {
-        console.log(this.seagullCount[i], 'Alki gulls');
-    // 1.  create a <li> element
-    var liEl = document.createElement('li');
-    // 2.  give that <li> element content 
-    liEl.textContent = `${days[i]}: ${this.seagullCount[i]}`;
-    console.log(liEl, 'LiEl');
-    // 3.  append the <li> to the <ul>
-    alkiUl.appendChild(liEl); 
+//First Location: 1st and Pike
+function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var pike = {
+    name: '1st and Pike',
+    minCust: 23,
+    maxCust: 65,
+    avgCookieSale: 6.3,
+    hourlyCookieSales: [], 
+    dailyTotal: 0, 
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+            //console.log(this.hourlyCookieSales);
+            this.dailyTotal += this.hourlyCookieSales[i];
+        }
     }
 }
+  
+pike.cookiesPerHour();
+  
 
-var goldenGardens = {
-    name: 'Golden Gardens Beach',
-    neighborhood: 'Ballard',
-    seagullCount: [12, 42, 33, 18, 2, 34, 17]
-};
+pike.render = function() {   /////pushes sales number to populate HTML
+    
+    var pikeUl = document.getElementById('Pike');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
+      
+      pikeUl.appendChild(liEl);
+    }
+  }
 
-var goldenGardensUl = document.getElementById('gg');
+  pike.render();
 
-var edmonds = {
-    name: 'Edmonds Beach',
-    neighborhood: 'Edmonds',
-    seagullCount: [65, 48, 89, 1, 56, 62, 89]
-};
+  //location two:  SeaTac Airport
 
-var edmondsUl = document.getElementById('edmonds');
+  function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var seaTac = {
+    name: 'SeaTac Airport',
+    minCust: 3,
+    maxCust: 24,
+    avgCookieSale: 1.2,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+            this.dailyTotal += this.hourlyCookieSales[i];
+        }
+    }
+}
+  
+seaTac.cookiesPerHour();
+  
+
+seaTac.render = function() {
+    
+    var seaTacUl = document.getElementById('SeaTac');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
+      
+      seaTacUl.appendChild(liEl);
+    }
+  }
+
+  seaTac.render();
+
+  //location three: Seattle Center
+
+  function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var seattleCenter = {
+    name: 'Seattle Center',
+    minCust: 11,
+    maxCust: 38,
+    avgCookieSale: 3.7,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+            this.dailyTotal += this.hourlyCookieSales[i];
+        }
+    }
+}
+  
+seattleCenter.cookiesPerHour();
+  
+//pushes cookie sales/hr to sales.html
+seattleCenter.render = function() {
+    
+    var seattleCenterUl = document.getElementById('Seattle Center');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
+      
+      seattleCenterUl.appendChild(liEl);
+    }
+  }
+
+  seattleCenter.render();
 
 
-alki.render();
+//location four: Capitol Hill
 
-//goldenGardens.render();
-//edmonds.render();
+function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var capitolHill = {
+    name: 'Capitol Hill',
+    minCust: 20,
+    maxCust: 38,
+    avgCookieSale: 2.3,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+            this.dailyTotal += this.hourlyCookieSales[i];
+        }
+    }
+}
+  
+capitolHill.cookiesPerHour();
+  
+
+capitolHill.render = function() {
+    
+    var capitolHillUl = document.getElementById('Capitol Hill');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
+      
+      capitolHillUl.appendChild(liEl);
+    }
+  }
+
+  capitolHill.render();
+
+
+  //location five: Alki 
+  
+  function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var alki = {
+    name: 'Alki',
+    minCust: 2,
+    maxCust: 16,
+    avgCookieSale: 4.6,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+            this.dailyTotal += this.hourlyCookieSales[i];
+        }
+    }
+}
+  
+alki.cookiesPerHour();
+  
+
+alki.render = function() {
+    
+    var alkiUl = document.getElementById('Alki');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
+      
+      alkiUl.appendChild(liEl);
+    }
+  }
+
+  alki.render();
+
