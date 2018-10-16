@@ -84,6 +84,84 @@ seaTac.render = function() {
 
   seaTac.render();
 
+  //location three: Seattle Center
+
+  function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var seattleCenter = {
+    name: 'Seattle Center',
+    minCust: 11,
+    maxCust: 38,
+    avgCookieSale: 3.7,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+           
+        }
+    }
+}
+  
+seattleCenter.cookiesPerHour();
+  
+//pushes cookie sales/hr to sales.html
+seattleCenter.render = function() {
+    
+    var seattleCenterUl = document.getElementById('Seattle Center');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      
+      seattleCenterUl.appendChild(liEl);
+    }
+  }
+
+  seattleCenter.render();
+
+
+//location four: Capitol Hill
+
+function getRandomIntInclusive (minCust, maxCust) {
+    return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  var capitolHill = {
+    name: 'Capitol Hill',
+    minCust: 20,
+    maxCust: 38,
+    avgCookieSale: 2.3,
+    hourlyCookieSales: [],
+    cookiesPerHour:  function() {
+        for (var i = 0; i < hours.length; i++) {
+            this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
+           
+        }
+    }
+}
+  
+capitolHill.cookiesPerHour();
+  
+
+capitolHill.render = function() {
+    
+    var capitolHillUl = document.getElementById('Capitol Hill');
+    
+    for (var i = 0; i < this.hourlyCookieSales.length; i++) {
+      
+      var liEl = document.createElement('li');
+      
+      liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]}`;
+      
+      capitolHillUl.appendChild(liEl);
+    }
+  }
+
+  capitolHill.render();
 
 
 
