@@ -38,17 +38,26 @@ new SalmonStand('Alki', 2, 16, 4.6);
          console.log(this.cookiesPerHour)
         }
      }
-
-  var renderAllSalmonStand = function() {
-    for (var i = 0; i < stores.length; i++) {
-      stores[i].cookiesPerHour();
-    }
+     
+  //render workflow, review Cat Demo
+     SalmonStand.prototype.render = function() {
+      for (var i = 0; i < hours.length; i++) {
+          var liEl = document.createElement('li');
+          liEl.hourlyCookieSales = this.hourlyCookieSales
+      }
   }
 
+//   function renderAllCats() {
+//     for (var i = 0; i < allCats.length; i++) {
+//       allCats[i].render();
+//     }
+//   }
+  // Now we need to call our functions: the one for the header row, and the one for generating the individual cat rows
+//   makeHeaderRow();
+//   renderAllCats();
+
 //   pike.render = function() {   /////pushes sales number to populate HTML
-    
 //     var pikeUl = document.getElementById('Pike');
-        
 //     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
 //         var liEl = document.createElement('li');     
 //         liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
