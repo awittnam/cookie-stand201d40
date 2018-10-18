@@ -50,7 +50,7 @@ function callingStores() {
   for (var i = 0; i < stores.length; i++){
     stores[i].calcCustPerHour();
     stores[i].cookiesPerHour();
-    //total cookies sold;
+    //need daily total
   }
 }
 callingStores();
@@ -106,33 +106,21 @@ var renderStores = function () {
 }
  
 
-// function renderAllStores() {
-//     for (var i = 0; i < stores.length; i++) {
-//     stores[i].render();
-//     }
-//   }
-// Now we need to call our functions: the one for the header row, and the one for generating the individual cat rows
-//   makeHeaderRow();
-//   renderAllCats();
-//render workflow, review Cat Demo
-// SalmonStand.prototype.render = function () {
-//   for (var i = 0; i < hours.length; i++) {
-//     var liEl = document.createElement('li');
-//     liEl.hourlyCookieSales = this.hourlyCookieSales
-//   }
 
-//   pike.render = function() {   /////pushes sales number to populate HTML
-//     var pikeUl = document.getElementById('Pike');
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-//         var liEl = document.createElement('li');     
-//         liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-//         pikeUl.appendChild(liEl);
-//         }
-//         liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//          pikeUl.appendChild(liEl);
-//         }
+//***** need to made a function to loop through all 5 locations and each hour (loop in a loop)
 
-//pike.render();
+//***** append table with hourly totals 
+
+//**make functionality that allow for adding dynamically added new stores to be included in the above */
+
+
+
+
+
+
+
+
+
 
 makeHeaderRow();
 renderStores();
@@ -143,226 +131,11 @@ renderStores();
 
 
 
-// constructor syntax
-// function Student(firstName, lastName, preferredName, hometown) {
-//     this.course = '201d40';
-//     this.enrolled = true;
-//     this.instructor = 'Sam';
-//     this.teachingAssistants = ['Noah', 'Tara', 'Zahra'];
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.preferredName = preferredName;
-//     this.hometown = hometown;
-//     Student.all.push(this);
-//   }
+// This function is the event handler for the submission of comments        -from demo
+// function handleCommentSubmit(event) {
+//   console.log('log of the event object', event);
+//   console.log('log of the event.target', event.target);
+//   console.log('log of the event.target.who', event.target.who);
+//   console.log(event.target.says.value);
 
-
-//First Location: 1st and Pike
-// function getRandomIntInclusive (minCust, maxCust) {
-//     return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
-//   }
-
-//   var pike = {
-//     name: '1st and Pike',
-//     minCust: 23,
-//     maxCust: 65,
-//     avgCookieSale: 6.3,
-//     hourlyCookieSales: [], 
-//     dailyTotal: 0, 
-    // cookiesPerHour:  function() {
-    //     for (var i = 0; i < hours.length; i++) {
-    //         this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-    //         //console.log(this.hourlyCookieSales);
-    //         this.dailyTotal += this.hourlyCookieSales[i];
-//         }
-//     }
-// }
-
-// pike.cookiesPerHour();
-
-
-// pike.render = function() {   /////pushes sales number to populate HTML
-
-//     var pikeUl = document.getElementById('Pike');
-
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-//       var liEl = document.createElement('li');     
-//       liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-//       pikeUl.appendChild(liEl);
-//     }
-//     liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//     pikeUl.appendChild(liEl);
-//   }
-
-//   pike.render();
-
-  //location two:  SeaTac Airport
-
-//   function getRandomIntInclusive (minCust, maxCust) {
-//     return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
-//   }
-
-//   var seaTac = {
-//     name: 'SeaTac Airport',
-//     minCust: 3,
-//     maxCust: 24,
-//     avgCookieSale: 1.2,
-//     hourlyCookieSales: [],
-//     dailyTotal: 0,
-//     cookiesPerHour:  function() {
-//         for (var i = 0; i < hours.length; i++) {
-//             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-//             this.dailyTotal += this.hourlyCookieSales[i];
-//         }
-//     }
-// }
-
-// seaTac.cookiesPerHour();
-
-
-// seaTac.render = function() {
-
-//     var seaTacUl = document.getElementById('SeaTac');
-
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-
-//       var liEl = document.createElement('li');
-
-//       liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-
-//       seaTacUl.appendChild(liEl);
-//     }
-//     liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//     seaTacUl.appendChild(liEl);
-//   }
-
-//   seaTac.render();
-
-//   //location three: Seattle Center
-
-//   function getRandomIntInclusive (minCust, maxCust) {
-//     return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
-//   }
-
-//   var seattleCenter = {
-//     name: 'Seattle Center',
-//     minCust: 11,
-//     maxCust: 38,
-//     avgCookieSale: 3.7,
-//     hourlyCookieSales: [],
-//     dailyTotal: 0,
-//     cookiesPerHour:  function() {
-//         for (var i = 0; i < hours.length; i++) {
-//             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-//             this.dailyTotal += this.hourlyCookieSales[i];
-//         }
-//     }
-// }
-
-// seattleCenter.cookiesPerHour();
-
-// //pushes cookie sales/hr to sales.html
-// seattleCenter.render = function() {
-
-//     var seattleCenterUl = document.getElementById('Seattle Center');
-
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-
-//       var liEl = document.createElement('li');
-
-//       liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-
-//       seattleCenterUl.appendChild(liEl);
-//     }
-//     liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//     seattleCenterUl.appendChild(liEl);
-//   }
-
-//   seattleCenter.render();
-
-
-// //location four: Capitol Hill
-
-// function getRandomIntInclusive (minCust, maxCust) {
-//     return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
-//   }
-
-//   var capitolHill = {
-//     name: 'Capitol Hill',
-//     minCust: 20,
-//     maxCust: 38,
-//     avgCookieSale: 2.3,
-//     hourlyCookieSales: [],
-//     dailyTotal: 0,
-//     cookiesPerHour:  function() {
-//         for (var i = 0; i < hours.length; i++) {
-//             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-//             this.dailyTotal += this.hourlyCookieSales[i];
-//         }
-//     }
-// }
-
-// capitolHill.cookiesPerHour();
-
-
-// capitolHill.render = function() {
-
-//     var capitolHillUl = document.getElementById('Capitol Hill');
-
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-
-//       var liEl = document.createElement('li');
-
-//       liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-
-//       capitolHillUl.appendChild(liEl);
-//     }
-//     liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//     capitolHillUl.appendChild(liEl);
-//   }
-
-//   capitolHill.render();
-
-
-//   //location five: Alki 
-
-//   function getRandomIntInclusive (minCust, maxCust) {
-//     return (Math.random() * (maxCust - minCust + 1)) + minCust; //The maximum is inclusive and the minimum is inclusive 
-//   }
-
-//   var alki = {
-//     name: 'Alki',
-//     minCust: 2,
-//     maxCust: 16,
-//     avgCookieSale: 4.6,
-//     hourlyCookieSales: [],
-//     dailyTotal: 0,
-//     cookiesPerHour:  function() {
-//         for (var i = 0; i < hours.length; i++) {
-//             this.hourlyCookieSales.push(Math.floor(getRandomIntInclusive(this.minCust, this.maxCust)*this.avgCookieSale));
-//             this.dailyTotal += this.hourlyCookieSales[i];
-//         }
-//     }
-// }
-
-// alki.cookiesPerHour();
-
-
-// alki.render = function() {
-
-//     var alkiUl = document.getElementById('Alki');
-
-//     for (var i = 0; i < this.hourlyCookieSales.length; i++) {
-
-//       var liEl = document.createElement('li');
-
-//       liEl.textContent = `${hours[i]}: ${this.hourlyCookieSales[i]} cookies`;
-
-//       alkiUl.appendChild(liEl);
-//     }
-//     liEl.textContent = `Total: ${this.dailyTotal} cookies`;
-//     alkiUl.appendChild(liEl);
-//   }
-
-//   alki.render();
-
+//   event.preventDefault(); // gotta have it for this purpose. prevents page reload on a 'submit' event
