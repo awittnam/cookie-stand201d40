@@ -50,6 +50,7 @@ function callingStores() {
   for (var i = 0; i < stores.length; i++){
     stores[i].calcCustPerHour();
     stores[i].cookiesPerHour();
+    stores[i].dailyTotalCookies ();
     //need daily total
   }
 }
@@ -77,6 +78,7 @@ function makeHeaderRow() {                                  //render header
   cookieTable.appendChild(trEl);     //adds to the table
 };
 
+makeHeaderRow();
 
 SalmonStand.prototype.render = function () {                        //render store data
 
@@ -101,6 +103,8 @@ var renderStores = function () {
     stores[i].render();
   }
 }
+
+renderStores();
  
 
 
@@ -138,52 +142,63 @@ for (var k = 0; k < dailyStoreTotals.length; k++) {
   }
 }
 
+cookieFooter();
 
 var newStoreLocaton = document.getElementById('add-stores');
 newStoreLocaton.addEventListener('submit', handleAdditionSubmit);
 
 function handleAdditionSubmit(event) {
-  event.preventdefault();
-//validation
-  if (!event.target.storeName.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.averageSale.value){
+  event.preventDefault();
+
+  //validation
+
+  if (!event.target.storeName.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.avgCookieSale.value){
     return alert('Fields cannot be empty');
   }
 
 var storeName = event.target.storeName.value;
 var minCust = event.target.minCust.value; 
 var maxCust = event.target.maxCust.value;
-var averageSale = event.target.averageSale;
+var avgCookie = event.target.avgCookieSale.value;
 
-if (isNaN(averageSale)) {
-  return alert('Please input only numbers for Average Sale per Customer');
-  }
+document.getElementById('footer').innerHTML = '';
+
+//if (isNaN(averageSale)) {
+  // return alert('Please input only numbers for Average Sale per Customer');
+   //}
   //**make functionality that allow for adding new store dynamically
-var newDynamicStore = new SalmonStand(storeName, minCust, maxCust, averageSale);
+var newDynamicStore = new SalmonStand (storeName, minCust, maxCust, avgCookie);
 event.target.storeName.value = null;     //sets fields as null
 event.target.minCust.value = null;
 event.target.maxCust.value = null;
-event.target.averageSale = null;
+event.target.avgCookieSale.value = null;
 
-cookieTable.innerHTML = ' ';
-makeHeaderRow();
+// makeHeaderRow();
 
 newDynamicStore.calcCustPerHour();
 newDynamicStore.cookiesPerHour();
-newDynamicStore.dailyTotal();
+newDynamicStore.dailyTotalCookies();
+
+
+//render
+renderStores();
+
+//footer
+cookieFooter();
 }
 
-renderStores();
-cookieFooter();
+//renderStores();
+
+
+
+
+
+
 
 
 
 
 //console.table(stores);
-
-
-
-
-
 
 // This function is the event handler for the submission of comments        -from demo
 // function handleCommentSubmit(event) {
