@@ -148,7 +148,7 @@ var newStoreLocaton = document.getElementById('add-stores');
 newStoreLocaton.addEventListener('submit', handleAdditionSubmit);
 
 function handleAdditionSubmit(event) {
-  event.preventdefault();
+  event.preventDefault();
 
   //validation
 
@@ -161,6 +161,8 @@ var minCust = event.target.minCust.value;
 var maxCust = event.target.maxCust.value;
 var avgCookie = event.target.avgCookieSale.value;
 
+document.getElementById('footer').innerHTML = '';
+
 //if (isNaN(averageSale)) {
   // return alert('Please input only numbers for Average Sale per Customer');
    //}
@@ -171,8 +173,7 @@ event.target.minCust.value = null;
 event.target.maxCust.value = null;
 event.target.avgCookieSale.value = null;
 
-cookieTable.innerHTML = '';
-makeHeaderRow();
+// makeHeaderRow();
 
 newDynamicStore.calcCustPerHour();
 newDynamicStore.cookiesPerHour();
