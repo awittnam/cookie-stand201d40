@@ -12,7 +12,6 @@
 
   <h1>Pat's Salmon Cookies</h1>
   
-  <table id="store-table"></table>
   <form id="add-stores">
     <fieldset>
 
@@ -26,10 +25,15 @@
       <input id="maxCust" name="Max Cust" type="number" size="15"  maxlength="3" required />
       
       <label for="averageSale">Average Sale:</label>
-      <input id="averageSale" name="Average Sale" type="float" size="15"  maxlength="4" required /> 
+
+      <input id="averageSale" name="Average Sale" type="text" size="15"  maxlength="4" required /> 
+
+      <input type="submit" name="add store" /> 
+
     </fieldset>
   </form>
 
+  <table id="store-table"></table>
   <script type="text/javascript" src="app.js"></script>
 </body>
 

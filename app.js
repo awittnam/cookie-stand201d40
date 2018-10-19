@@ -3,7 +3,7 @@
 var stores = [];
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm']
-
+var cookieTable = document.getElementById('store-table');
 
 function SalmonStand(storeName, minCust, maxCust, avgCookieSale) {
   this.storeName = storeName;
@@ -55,11 +55,8 @@ function callingStores() {
 }
 callingStores();
 
-var cookieTable = document.getElementById('store-table');
 
-//render header
-
-function makeHeaderRow() {
+function makeHeaderRow() {                                  //render header
  
   var trEl = document.createElement('tr'); 
 
@@ -80,8 +77,8 @@ function makeHeaderRow() {
   cookieTable.appendChild(trEl);     //adds to the table
 };
 
-//render store date
-SalmonStand.prototype.render = function () {
+
+SalmonStand.prototype.render = function () {                        //render store data
 
 var trEl = document.createElement('tr');    // make a tr
 var tdEl = document.createElement('td');    //// make a td
@@ -107,23 +104,80 @@ var renderStores = function () {
  
 
 
-//***** need to made a function to loop through all 5 locations and each hour (loop in a loop)
+//***** need to made a function to loop through all 5 locations and each hour (loop in a loop)  (WEDNESDAY LAB)
+//footer portion of form
+function cookieFooter() {
 
-//***** append table with hourly totals 
+var hourlyTotal = 0;
+var dailyStoreTotals = [];
 
-//**make functionality that allow for adding dynamically added new stores to be included in the above */
+  for (var i = 0; i < hours.length; i++){
+    var initialTotal = 0;
+
+    for (var j = 0; j < stores.length; j++){
+      initialTotal += stores[j].hourlyCookieSales[i];
+    }
+    hourlyTotal += initialTotal;
+    dailyStoreTotals.push(initialTotal);
+  }
+
+dailyStoreTotals.push(hourlyTotal);
+
+//***** append table with hourly totals to the DOM
+var trEl = document.createElement('tr');   
+var thEl = document.createElement('th');    
+thEl.textContent = 'hourly total';          
+trEl.setAttribute('id', 'footer');     //setAttribute is where you lock the footer at the bottom of footer
+trEl.appendChild(thEl); 
+cookieTable.appendChild(trEl);
+
+for (var k = 0; k < dailyStoreTotals.length; k++) {
+  var tdEl = document.createElement('td');
+  tdEl.textContent = dailyStoreTotals[k];
+  trEl.appendChild(tdEl);
+  }
+}
 
 
+var newStoreLocaton = document.getElementById('add-stores');
+newStoreLocaton.addEventListener('submit', handleAdditionSubmit);
 
+function handleAdditionSubmit(event) {
+  event.preventdefault();
+//validation
+  if (!event.target.storeName.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.averageSale.value){
+    return alert('Fields cannot be empty');
+  }
 
+var storeName = event.target.storeName.value;
+var minCust = event.target.minCust.value; 
+var maxCust = event.target.maxCust.value;
+var averageSale = event.target.averageSale;
 
+if (isNaN(averageSale)) {
+  return alert('Please input only numbers for Average Sale per Customer');
+  }
+  //**make functionality that allow for adding new store dynamically
+var newDynamicStore = new SalmonStand(storeName, minCust, maxCust, averageSale);
+event.target.storeName.value = null;     //sets fields as null
+event.target.minCust.value = null;
+event.target.maxCust.value = null;
+event.target.averageSale = null;
 
-
-
-
-
+cookieTable.innerHTML = ' ';
 makeHeaderRow();
+
+newDynamicStore.calcCustPerHour();
+newDynamicStore.cookiesPerHour();
+newDynamicStore.dailyTotal();
+}
+
 renderStores();
+cookieFooter();
+
+
+
+
 //console.table(stores);
 
 
