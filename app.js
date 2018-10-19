@@ -162,6 +162,7 @@ var maxCust = event.target.maxCust.value;
 var avgCookie = event.target.avgCookieSale.value;
 
 document.getElementById('footer').innerHTML = '';
+cookieTable.innerHTML = '';
 
 //if (isNaN(averageSale)) {
   // return alert('Please input only numbers for Average Sale per Customer');
